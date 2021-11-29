@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillCloud } from 'react-icons/ai';
 import { FiWind } from 'react-icons/fi';
+import { IoMdSettings } from 'react-icons/io';
 import css from './WeatherInfo.module.scss';
 
 interface WeatherInfoProps {
@@ -11,6 +12,7 @@ interface WeatherInfoProps {
   wind: number;
   cityName: string;
   text: string;
+  onSettingsClick: () => void;
 }
 
 export const WeatherInfo = ({
@@ -20,7 +22,8 @@ export const WeatherInfo = ({
   clouds,
   wind,
   cityName,
-  text
+  text,
+  onSettingsClick
 }: WeatherInfoProps) => {
   return (<div className={css.mainBlock}>
     <div>
@@ -30,7 +33,8 @@ export const WeatherInfo = ({
       <div title="wind speed"><FiWind /> {wind}m/s</div>
       <div>{text}</div>
     </div>
-    <div>
+    <div className={css.rightSide}>
+      <IoMdSettings onClick={onSettingsClick} />
       <div className={css.temperature}>{temperature}&#8451;</div>
       <img src={icon} alt="" />
     </div>

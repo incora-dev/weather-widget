@@ -23,3 +23,9 @@
   font-size: 1.5rem;
   text-align: right;
 }
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

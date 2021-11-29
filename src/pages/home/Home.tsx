@@ -29,6 +29,7 @@ export const HomePage = () => {
     <Widget
       days={weatherState.forecast.data}
       city={weatherState.forecast.city_name}
+      onChangeLocation={setLocation}
     />
   </div>
 }

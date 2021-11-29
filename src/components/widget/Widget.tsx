@@ -9,13 +9,22 @@ const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 interface WidgetProps {
   days: WeatherApiDay[];
   city: string;
+  onChangeLocation: (location: string) => void;
 }
 
-export const Widget = ({ days = [], city }: WidgetProps) => {
+export const Widget = ({ days = [], city, onChangeLocation }: WidgetProps) => {
   const [current, setCurrent] = useState(days[0]);
+
+  const onChangeSettings = () => {
+    const location = prompt('Enter new place (in format lat,lon ex. "49.84,24.03")');
+    if (location) {
+      onChangeLocation(location);
+    }
+  }
 
   return <div className={css.wrapper}>
     <WeatherInfo
+      onSettingsClick={onChangeSettings}
       dayName={DAY_NAMES[new Date(current?.valid_date).getDay()]}
       icon={`https://www.weatherbit.io/static/img/icons/${current?.weather.icon}.png`}
       temperature={current.temp}
