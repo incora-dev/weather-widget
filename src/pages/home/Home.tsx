@@ -19,6 +19,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(WeatherActions.getWeather(location));
+    // eslint-disable-next-line
   },[location]);
 
   const weatherState = useSelector<AppState>(state => state.weather) as AppState["weather"];

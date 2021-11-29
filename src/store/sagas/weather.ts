@@ -18,6 +18,7 @@ function* watchGetLandingCourses() {
   yield takeLatest(WeatherActions.getWeather, getWeatherForecast);
 }
 
+// eslint-disable-next-line
 export default function* () {
   yield all([
     watchGetLandingCourses()
