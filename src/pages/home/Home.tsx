@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Widget } from '../../components/widget';
+import { WeatherLocation } from '../../models/weather';
 import { AppState } from '../../store/slices';
 import { actions as WeatherActions } from '../../store/slices/weather';
 
 export const HomePage = () => {
-  const [location, setLocation] = useState('49.84,24.03');
+  const [location, setLocation] = useState<WeatherLocation>({
+    lat: 49.84,
+    lon: 24.03,
+  });
   const dispatch = useDispatch();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
-      setLocation(`${latitude},${longitude}`);
+      setLocation({
+        lat: latitude,
+        lon: longitude,
+      });
     }, err => {
       console.log(err);
     });
@@ -30,7 +37,7 @@ export const HomePage = () => {
     <Widget
       days={weatherState.forecast.data}
       city={weatherState.forecast.city_name}
-      onChangeLocation={setLocation}
+      onChangeLocation={(city) => setLocation({ city })}
     />
   </div>
 }

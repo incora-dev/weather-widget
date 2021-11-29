@@ -3,9 +3,9 @@ import { actions as WeatherActions } from '../slices/weather';
 import { getWeather } from '../../api/weather';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
-import { WeatherForecast } from '../../models/weather';
+import { WeatherForecast, WeatherLocation } from '../../models/weather';
 
-function* getWeatherForecast(action: PayloadAction<string>): Generator {
+function* getWeatherForecast(action: PayloadAction<WeatherLocation>): Generator {
   try {
     const response = (yield call(getWeather, action.payload)) as AxiosResponse<WeatherForecast>;
     yield put(WeatherActions.getWeatherSuccess(response.data));

@@ -52,3 +52,9 @@ export interface WeatherForecast {
   timezone: string;
   data: WeatherApiDay[];
 }
+
+export interface WeatherLocation {
+  city?: string;
+  lon?: number;
+  lat?: number;
+}

@@ -16,7 +16,7 @@ export const Widget = ({ days = [], city, onChangeLocation }: WidgetProps) => {
   const [current, setCurrent] = useState(days[0]);
 
   const onChangeSettings = () => {
-    const location = prompt('Enter new place (in format lat,lon ex. "49.84,24.03")');
+    const location = prompt('Enter city name (in format etc. Kyiv)');
     if (location) {
       onChangeLocation(location);
     }

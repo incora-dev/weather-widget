@@ -1,7 +1,14 @@
 import axios from 'axios';
-import { WeatherForecast } from '../models/weather';
+import { WeatherForecast, WeatherLocation } from '../models/weather';
 
-export const getWeather = (location: string) => {
-  const [lat, lon] = location.split(',');
-  return  axios.get<WeatherForecast>(`//api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&days=6&key=${process.env.REACT_APP_WEATHER_API_KEY}`)
+export const getWeather = (location: WeatherLocation) => {
+  const { lon, lat, city } = location;
+  let query = `?key=${process.env.REACT_APP_WEATHER_API_KEY}&days=6`;
+  if (lat && lon) {
+    query += `&lat=${lat}&lon=${lon}`
+  }
+  if (city) {
+    query += `&city=${city}`
+  }
+  return axios.get<WeatherForecast>(`//api.weatherbit.io/v2.0/forecast/daily${query}`);
 }
